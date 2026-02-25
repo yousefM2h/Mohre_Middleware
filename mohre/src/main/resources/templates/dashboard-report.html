@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Company Employer WPS Data</title>
+    <style type="text/css">
+        @page {
+            size: A4 portrait;
+            margin: 45mm 15mm 20mm 15mm;
+
+            @top-center {
+                content: element(header);
+            }
+
+            @bottom-center {
+                content: element(footer);
+            }
+        }
+
+        #header {
+            position: running(header);
+            width: 100%;
+            padding-bottom: 20px;
+        }
+
+        #footer {
+            position: running(footer);
+            font-size: 8pt;
+            color: #999;
+            text-align: center;
+            border-top: 1px solid #eee;
+            padding-top: 5px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            color: #333;
+        }
+
+        .container {
+            padding: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th {
+            background-color: #dadada;
+            color: #333;
+            text-align: left;
+            padding: 12px 15px;
+            font-weight: bold;
+            border: 1px solid #ccc;
+        }
+
+        td {
+            padding: 12px 15px;
+            border: 1px solid #eee;
+            background-color: #fff;
+        }
+
+        tr {
+            page-break-inside: avoid;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f9fbfd;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <table style="width: 100%; border: none;">
+            <tr>
+                <td style="border: none; text-align: right; padding: 0;">
+                    <img th:src="${logoPath}" alt="UAB Logo" style="width: 160px;" />
+                </td>
+            </tr>
+            <tr>
+                <td style="border: none; text-align: center; padding: 10px 0 0 0;">
+                    <h1 style="color: #000; font-size: 16pt; margin: 0; font-weight: bold;">Company Employer WPS Data
+                    </h1>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="footer">
+        Generated on <span th:text="${generatedAt}">...</span> by <span th:text="${generatedBy}">...</span> | Page <span
+            class="page"></span> of <span class="topage"></span>
+    </div>
+
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Month</th>
+                    <th>WPS Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="entry : ${report.entries}">
+                    <td th:text="${entry.month}">August 2024</td>
+                    <td th:text="${entry.status}">WPS Paid for Month</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
