@@ -22,6 +22,7 @@ import com.mohre.middleware.model.response.GetCompanyListResponse;
 import com.mohre.middleware.model.response.RegistrationCheckResponse;
 import com.mohre.middleware.model.response.RetrieveEmployerWpsDataResponse;
 import com.mohre.middleware.model.response.RetrieveWPSReportEmployeeResponse;
+import com.mohre.middleware.model.response.RetrieveWPSReportEmployerResponse;
 import com.mohre.middleware.utils.UrlUtils;
 
 import lombok.AllArgsConstructor;
@@ -50,6 +51,27 @@ public class MohreClient {
 		// GetCompanyListResponse.class);
 		// GetCompanyListResponse detail = response.getBody();
 		return null;
+	}
+
+	public RetrieveWPSReportEmployerResponse retrieveWPSReportEmployer(String regNumber, String ownerEida)
+			throws Exception {
+		String url = "http://localhost:8088/api/mohre/retrieveWPSReportEmployer";
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			Map<String, String> requestBody = new HashMap<>();
+			requestBody.put("registrationNumber", regNumber);
+			requestBody.put("ownerEIDA", ownerEida);
+			String jsonString = mapper.writeValueAsString(requestBody);
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(MediaType.APPLICATION_JSON);
+			HttpEntity<String> entity = new HttpEntity<>(jsonString, headers);
+			ResponseEntity<String> jsonResponse = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+			return mapper.readValue(jsonResponse.getBody(), RetrieveWPSReportEmployerResponse.class);
+
+		} catch (Exception e) {
+			throw new RuntimeException("Error while calling RetrieveWpsReportEmployer API", e);
+		}
+
 	}
 
 	public RetrieveWPSReportEmployeeResponse retrieveWPSReportEmployee(String registrationNumber, String employeeEIDA)

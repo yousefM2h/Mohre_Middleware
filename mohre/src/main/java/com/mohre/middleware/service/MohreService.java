@@ -23,6 +23,7 @@ import com.mohre.middleware.model.response.RetrieveEmployeeDetailUsingUnifiedNum
 import com.mohre.middleware.model.response.RetrieveEmployerWpsDataResponse;
 import com.mohre.middleware.model.response.RetrieveEmployerWpsDataResponse.RetrieveEmployerWpsRespData;
 import com.mohre.middleware.model.response.RetrieveWPSReportEmployeeResponse;
+import com.mohre.middleware.model.response.RetrieveWPSReportEmployerResponse;
 import com.mohre.middleware.model.response.SalaryNotificationDetailResponse;
 import com.mohre.middleware.model.response.UpdateRegisteredEmployerDetailsResponse;
 import com.mohre.middleware.model.response.RegistrationCheckResponse.CompanyWithEmployer;
@@ -37,6 +38,9 @@ public interface MohreService {
 	void saveDetailsToWorkflowTable(CompanyEmployerDetailsRequest request);
 
 	public RetrieveWPSReportEmployeeResponse retrieveWPSReportEmployee(String registrationNumber, String employeeEIDA)
+			throws Exception;
+
+	public RetrieveWPSReportEmployerResponse retrieveWPSReportEmployer(String registrationNumber, String ownerEIDA)
 			throws Exception;
 
 	// public GetCompanyListResponse
