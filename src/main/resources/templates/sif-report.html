@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>SIF File Details</title>
+    <style type="text/css">
+        @page {
+            size: A4 landscape;
+            margin: 18mm 12mm 22mm 12mm;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 9pt;
+            color: #111111;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ====== Header ====== */
+        .logo-section {
+            width: 100%;
+            margin-bottom: 5px;
+        }
+
+        .logo-text {
+            text-align: right;
+            font-weight: bold;
+            font-size: 14pt;
+            color: #003366;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 16pt;
+            margin: 6px 0 10px 0;
+        }
+
+        .meta-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 16px;
+        }
+
+        .meta-table td {
+            border: 1px solid #999999;
+            padding: 5px 8px;
+            vertical-align: top;
+        }
+
+        .meta-table .label {
+            font-weight: bold;
+            background-color: #f0f0f0;
+            width: 13%;
+        }
+
+        .meta-table .value {
+            width: 20%;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+        }
+
+        .data-table th {
+            background-color: #d9d9d9;
+            font-weight: bold;
+            border: 1px solid #999999;
+            padding: 6px 4px;
+            text-align: center;
+            font-size: 8pt;
+        }
+
+        .data-table td {
+            border: 1px solid #bbbbbb;
+            padding: 5px 4px;
+            text-align: center;
+            font-size: 8pt;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 8pt;
+            color: #555555;
+            width: 100%;
+        }
+
+        .footer td {
+            padding: 4px 0;
+        }
+
+        .footer .left {
+            text-align: left;
+        }
+
+        .footer .right {
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== LOGO ========== -->
+    <div class="logo-section">
+        <div class="logo-text">
+            البنك العربي المتحد<br />
+            UNITED ARAB BANK
+        </div>
+    </div>
+
+    <!-- ========== HEADER ========== -->
+    <div class="header">
+        <h1>SIF File Details</h1>
+    </div>
+
+    <table class="meta-table">
+        <tr>
+            <td class="label">SIF File Name</td>
+            <td class="value" th:text="${report.sifFileName}">3434343434343</td>
+            <td class="label">Total Employees</td>
+            <td class="value" th:text="${report.totalEmployees}">7</td>
+            <td class="label">Total Salary</td>
+            <td class="value" th:text="${report.totalSalary}">56000.00</td>
+        </tr>
+        <tr>
+            <td class="label">Company Name</td>
+            <td class="value" th:text="${report.companyName}">tom</td>
+            <td class="label">Establishment Id</td>
+            <td class="value" th:text="${report.establishmentId}">3434343434343</td>
+            <td class="label">Establishment Name</td>
+            <td class="value" th:text="${report.establishmentName}">tom</td>
+        </tr>
+        <tr>
+            <td class="label">Employer Bank Code</td>
+            <td class="value" th:text="${report.employerBankCode}">904630101</td>
+            <td class="label">Payment Currency</td>
+            <td class="value" th:text="${report.paymentCurrency}">AED</td>
+            <td class="label">Account No</td>
+            <td class="value" th:text="${report.accountNo}">2767676767677</td>
+        </tr>
+        <tr>
+            <td class="label">Account Description</td>
+            <td class="value" colspan="5" th:text="${report.accountDescription}">tom</td>
+        </tr>
+    </table>
+
+    <!-- ========== EMPLOYEE TABLE ========== -->
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>SI No</th>
+                <th>Employee Id</th>
+                <th>Agent Id</th>
+                <th>Employee Acc No</th>
+                <th>Pay Start Date</th>
+                <th>Pay End Date</th>
+                <th>Fixed Value</th>
+                <th>Variable Value</th>
+                <th>LOP Days</th>
+                <th>Days In Month</th>
+                <th>Amt Returned</th>
+                <th>Return Reason</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="emp : ${report.employees}">
+                <td th:text="${emp.slNo}">1</td>
+                <td th:text="${emp.employeeId}">3041404782528</td>
+                <td th:text="${emp.agentId}">30262012</td>
+                <td th:text="${emp.employeeAccNo}">AE47026000101</td>
+                <td th:text="${emp.payStartDate}">01 Jun 2025</td>
+                <td th:text="${emp.payEndDate}">30 Jun 2025</td>
+                <td th:text="${#numbers.formatDecimal(emp.fixedValue, 0, 'COMMA', 0, 'POINT')}">10,000</td>
+                <td th:text="${emp.variableValue}">0</td>
+                <td th:text="${emp.lopDays}">0</td>
+                <td th:text="${emp.daysInMonth}">30</td>
+                <td th:text="${emp.amtReturned}">0</td>
+                <td th:text="${emp.returnReason}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="footer">
+        <tr>
+            <td class="left">
+                Generated By: <span th:text="${generatedBy}">user</span>
+                | <span th:text="${generatedAt}">20 Feb 2026 01:28:06 PM</span>
+            </td>
+            <td class="right">
+                SIF File Details Report
+            </td>
+        </tr>
+    </table>
+
+</body>
+
+</html>
