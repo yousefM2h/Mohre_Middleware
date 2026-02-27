@@ -22,41 +22,60 @@ import com.mohre.middleware.model.response.RetreiveActiveEmployeeDetailsResponse
 import com.mohre.middleware.model.response.RetrieveEmployeeDetailUsingUnifiedNumberResponse;
 import com.mohre.middleware.model.response.RetrieveEmployerWpsDataResponse;
 import com.mohre.middleware.model.response.RetrieveEmployerWpsDataResponse.RetrieveEmployerWpsRespData;
+import com.mohre.middleware.model.response.RetrieveWPSReportEmployeeResponse;
 import com.mohre.middleware.model.response.SalaryNotificationDetailResponse;
 import com.mohre.middleware.model.response.UpdateRegisteredEmployerDetailsResponse;
 import com.mohre.middleware.model.response.RegistrationCheckResponse.CompanyWithEmployer;
 import com.mohre.middleware.model.response.RegistrationCheckResponse.RegistrationCheckItem;
 
 public interface MohreService {
-	
+
 	public Optional<RegistrationCheckItem> getCompanyDetails(String emiratesID) throws Exception;
 
 	RegisteredCompanyList getRegisteredCompanies();
 
 	void saveDetailsToWorkflowTable(CompanyEmployerDetailsRequest request);
-	
-//	public GetCompanyListResponse getCompanyList(GetCompanyOrDomesticSponsorListRequest request);
-//	
-//	public GetDomesticListResponse getDomesticList(GetCompanyOrDomesticSponsorListRequest request);
-//	
-//	public RegisteredEmployerDetailsResponse getRegisteredEmployerDetails(RegisteredEmployerDetailsRequest request);
-//    
-//	public UpdateRegisteredEmployerDetailsResponse updateRegisteredEmployerDetails(UpdateRegisteredEmployerDetailsRequest request);
-//    
-//	public RetreiveActiveEmployeeDetailsResponse retrieveActiveEmployeeDetails(RetrieveActiveEmployeeDetailsRequest request);
-//
-//	public RetrieveEmployeeDetailUsingUnifiedNumberResponse retrieveEmployeeDetailUsingUnifiedNumber(RetrieveEmployeeDetailUsingUnifiedNumberRequest request);
-//	
+
+	public RetrieveWPSReportEmployeeResponse retrieveWPSReportEmployee(String registrationNumber, String employeeEIDA)
+			throws Exception;
+
+	// public GetCompanyListResponse
+	// getCompanyList(GetCompanyOrDomesticSponsorListRequest request);
+	//
+	// public GetDomesticListResponse
+	// getDomesticList(GetCompanyOrDomesticSponsorListRequest request);
+	//
+	// public RegisteredEmployerDetailsResponse
+	// getRegisteredEmployerDetails(RegisteredEmployerDetailsRequest request);
+	//
+	// public UpdateRegisteredEmployerDetailsResponse
+	// updateRegisteredEmployerDetails(UpdateRegisteredEmployerDetailsRequest
+	// request);
+	//
+	// public RetreiveActiveEmployeeDetailsResponse
+	// retrieveActiveEmployeeDetails(RetrieveActiveEmployeeDetailsRequest request);
+	//
+	// public RetrieveEmployeeDetailUsingUnifiedNumberResponse
+	// retrieveEmployeeDetailUsingUnifiedNumber(RetrieveEmployeeDetailUsingUnifiedNumberRequest
+	// request);
+	//
 	public RetrieveEmployerWpsRespData retrieveEmployerWpsData(WpsStatusDetailsRequest request) throws Exception;
-//
-//	public DomesticEmployementRegistrationResponse registerDomesticEmployer(RegisterDomesticEmployerRequest model);
-//
-//	public CompanyEmployementRegistrationResponse registerCompanyEmployer(RegisterCompanyEmployerRequest model);
-//
-//	public SalaryNotificationDetailResponse sendSalaryNotificationDetail(SendSalaryNotificationDetailRequest model);
-//
-//	public DomesticSalaryPaymentResponse sendDomesticSalaryPaymentDetails(SendDomesticSalaryPaymentDetailsRequest model);
-//
-//	public CompanySalaryDetailResponse sendCompanySalaryPaymentDetails(SendCompanySalaryPaymentDetailsRequest model);
-	
+	//
+	// public DomesticEmployementRegistrationResponse
+	// registerDomesticEmployer(RegisterDomesticEmployerRequest model);
+	//
+	// public CompanyEmployementRegistrationResponse
+	// registerCompanyEmployer(RegisterCompanyEmployerRequest model);
+	//
+	// public SalaryNotificationDetailResponse
+	// sendSalaryNotificationDetail(SendSalaryNotificationDetailRequest model);
+	//
+	// public DomesticSalaryPaymentResponse
+	// sendDomesticSalaryPaymentDetails(SendDomesticSalaryPaymentDetailsRequest
+	// model);
+	//
+	// public CompanySalaryDetailResponse
+	// sendCompanySalaryPaymentDetails(SendCompanySalaryPaymentDetailsRequest
+	// model);
+
 }
